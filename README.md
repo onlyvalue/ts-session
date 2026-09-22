@@ -1,3 +1,8 @@
+success는 게시글 배열을 가진 성공 상태, empty는 게시글이 없음을 나타내는 상태라는 점이 다르다.
+하지만 Post[]는 빈 배열도 허용하기때문에 { status: 'success', data: [] }도 타입 오류 없이 만들 수 있다.
+따라서 상태별 필수 데이터는 보장하지만, 게시글이 없는데도 성공 상태로 표현할 수 있어 불가능한 상태를 완전히 없앤 설계는 아니다.
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
