@@ -12,5 +12,5 @@ export type NewPost = Omit<Post, "id">;
 export type PostListState =
   | { status: "loading" }
   | { status: "success"; data: Post[] }
-  | { status: "error"; message: '게시글을 불러오지못했습니다. 네트워크 연결을 확인해주세요.' }
+  | { status: "error"; message: string }
   | { status: "empty" };
