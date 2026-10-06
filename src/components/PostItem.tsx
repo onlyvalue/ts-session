@@ -49,7 +49,7 @@ const FavoriteButton = styled.button<{ $active: boolean }>`
   color: white;
   font-weight: 400;
 `;
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 const Title = styled.h3`
   margin: 0 0 8px 0;
   font-size: 18px;
