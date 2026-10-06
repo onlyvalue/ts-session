@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "./components/Button";
 import type { Post, NewPost, PostListState } from "./types";
 import PostList from "./components/PostList";
+import PostItem from "./components/PostItem";
 
 const DUMMY: Post[] = [
   { id: 1, title: "첫 글", content: "반갑습니다", author: "동건" },
@@ -15,6 +16,16 @@ function App() {
   const [posts, setPosts] = useState<Post[]>(DUMMY);
   // 과제 2-1: 선택한 게시글 상태를 Post | null 타입, 초기값 null로 만드세요.
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const [favorites, setFavorites] = useState<Post[]>([]);
+
+  const toggleFavorite = (post: Post) => {
+    const isFavorite = favorites.some((f) => f.id === post.id);
+    setFavorites(
+      isFavorite
+        ? favorites.filter((f) => f.id !== post.id)
+        : [...favorites, post],
+    );
+  };
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -80,10 +91,17 @@ function App() {
       />
       <Button label="추가" onClick={handleAddPost} />
 
-      {/* 과제 1-1: DUMMY 대신 게시글 상태로 렌더링하세요. */}
-      {/* 과제 2-2: PostItem에 onSelect를 넘기세요. */}
-      {/* 과제 3-3: 아래 목록을 PostList로 바꾸고 목록 상태와 onSelect를 넘기세요. 쓰지 않게 된 import와 List는 지웁니다. */}
-      <PostList state={listState} onSelect={setSelectedPost} />
+      <PostList state={listState}>
+        {posts.map((post) => (
+          <PostItem
+            key={post.id}
+            post={post}
+            onSelect={setSelectedPost}
+            isFavorite={favorites.some((f) => f.id === post.id)}
+            onToggleFavorite={toggleFavorite}
+          />
+        ))}
+      </PostList>
 
       {/* 과제 2-3: 선택 전에는 "게시글을 선택해주세요.", 선택 후에는 번호·제목·내용·작성자를 보여 주세요. */}
       {selectedPost ? (
